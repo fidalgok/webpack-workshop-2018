@@ -1,6 +1,6 @@
-const red = 'color: light-salmon;';
-const blue = 'color: skyblue;';
-const makeColorStyle = color => `color: ${color};`;
+const red = 'lightCoral';
+const blue = 'CornflowerBlue';
+const makeColorStyle = color => `${color}`;
 
 exports.red = red;
 exports.blue = blue;
