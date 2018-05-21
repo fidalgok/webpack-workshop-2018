@@ -1,11 +1,11 @@
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpackMerge = require("webpack-merge");
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackMerge = require('webpack-merge');
 
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
-const presetConfig = require("./build-utils/loadPresets");
+const presetConfig = require('./build-utils/loadPresets');
 
-module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
+module.exports = ({ mode, presets } = { mode: 'production', presets: [] }) => {
   return webpackMerge(
     {
       mode,
@@ -15,7 +15,7 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
             test: /\.jpe?g$/,
             use: [
               {
-                loader: "url-loader",
+                loader: 'url-loader',
                 options: {
                   limit: 5000
                 }
@@ -25,7 +25,9 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
         ]
       },
       output: {
-        filename: "bundle.js"
+        filename: 'bundle.js',
+        //used for naming lazy load imports such as footer.js in the index.js file
+        chunkFilename: '[name].lazy-chunk.js'
       },
       plugins: [new HtmlWebpackPlugin(), new webpack.ProgressPlugin()]
     },
