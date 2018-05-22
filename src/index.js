@@ -9,7 +9,8 @@ import css from './footer.css';
 import buttonStyles from './button.css';
 //magic comments
 const footer = () => import(/* webpackChunkName: "footer" */ './footer');
-const setButtonStyle = color => import(`./button-styles/${color}`);
+const setButtonStyle = color =>
+  import(/* webpackPreload: true */ `./button-styles/${color}`);
 
 const image = makeImage(imageUrl);
 const button = makeButton('Yay! A Button!');
@@ -34,7 +35,7 @@ button.addEventListener('click', e => {
     console.log(gsap);
   });
 
-  setButtonStyle('red').then(stylestr => {
+  setButtonStyle('blue').then(stylestr => {
     button.style = stylestr.default;
   });
 });
